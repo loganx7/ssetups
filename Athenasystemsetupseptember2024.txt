@@ -1,5 +1,9 @@
 Setup Athena
 
+
+adding user to sudoers
+$ sudo usermod -a -G sudo <username>
+
 Download Anaconda
 Install Anaconda
     https://docs.anaconda.com/free/anaconda/install/index.html
