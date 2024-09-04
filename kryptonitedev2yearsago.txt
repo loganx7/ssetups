@@ -1,0 +1,322 @@
+
+Develop habits
+Follow routine
+Practice mantra
+Enter the flow state/ trance or trance like
+
+Always begin with the end in mind
+learning - memorize, recite,teach
+Time is gold - Prioritise
+Manage energy instead of time - minimize caffeine intake
+Hydrate
+Exercize
+Rest
+Plan
+Visualize
+********************************************************************
+Always triage
+Use pomodoro
+apply dmaic
+20/80 rule
+apply problem solving method
+
+********************************************************************
+Test Driven Development (TDD). Three rules of TDD proposed by Robert C. Martin are:
+
+You are not allowed to write any production code unless it is to make a failing unit test pass.
+You are not allowed to write any more of a unit test than is sufficient to fail, and compilation failures are failures.
+You are not allowed to write any more production code than is sufficient to pass the one failing unit test.
+The key idea of TDD is that we base our software development around a set of unit tests that we have created, which makes unit testing the heart of the TDD software development process. This way, you are assured that you have a test for every component you develop.
+
+TDD is also biased toward having smaller tests which means tests that are more specific and test fewer components at a time. This aids in tracking down errors, and smaller tests are also easier to read and understand since there are fewer components at play in a single run.
+********************************************************************
+git work flow
+
+branches
+	- master : finish running product ready for release
+	- develop : incremental features and fixes are added here. will be merged to mater when ready for production 
+	- feature : features are develop here then merged to develop
+	- scratchpad : coding work here then passed to upstreams
+	- ephemeral 
+	- debug : for working on bug fixes
+	- debug_scratchpad : work here for debug
+
+		Starting with merged master and develop branches, rebase the feature branch using develop branch. fork a 
+	scratchpad from this feature branch. Do the coding in scratchpad to create a feature to be added. 
+
+		When done coding the feature to be added merge the scratchpad with the feature branch.  Merge the feature 
+	branch to the develop branch. merge the develop branch to master. push master to origin.
+
+********************************************************************
+   - triage
+	- 80/20 rule
+	- prioritize
+	    - urgent , importand , asap , etc
+	- or begin with low hanging fruits at first or when not having focus.
+	- base on the impact on functionality, efficiency, workflow streamlining, profitability
+
+
+********************************************************************
+Current Focus
+********************************************************************
+sept 28 
+   -- websockets using ccxt - save to db
+   	orderbook
+   	order flow
+   	margin data
+sept 22
+	- create code templates for diff functions for diff languages
+sept 19
+just append new data if file of ohlcv already exists
+get min and max  for the last 8,5,3 days, 24 hrs and lower time frames
+    - determine at what level of  percentage change should be to be considered less significant/probable to have a  big change again at the moment. 
+ 5m in 8 days = 11520 
+ 7 days = 10080
+ - save in a separate folder - it should accumulate.
+ - create a command line option for this feature.
+       
+prioritize trade on those that have very low min max and their difference . giving less weight to those that have already had big min max changes previously in the last 3 -5 -7 days.
+
+get the standard deviation of volume for the past 7 days. watch out for sudden volume changes. 
+
+May 14
+modify olhcv getter to write data to file including a header using pandas
+
+sept 17
+sort to 20 longest candles of all symbols in each time frames 
+    download 288 5m candles and calculate for each time frame using only the 5m time frame candle data
+    
+********************************************************************
+April 27
+********************************************************************
+april 15 
+	coinmarketcap
+	coingecko
+	replace ta-lib with bta-lib
+********************************************************************
+April 7 2020
+	- restart with TAlib
+
+********************************************************************
+Feb 14
+	- Use TAlib
+	- price and volume at 5m time frame
+	- distribution of high rate of change  during the day
+	- always be aware of triangle formation ( frontrunning the supports and resistances)
+********************************************************************
+********************************************************************
+********************************************************************
+********************************************************************
+
+Primary Priorities	
+	- visualization
+		- plot in different time frames simultaneously
+		- compare annual plots
+	- create minimal useable beta.
+		- prioritize maintaining data at 1d and 5m time frame
+			- determine if precentage increase is > than 5%
+			- determine if rsi in the 1d time frame is oversold
+			- determine if smas in 1d time frame are converged and about to diverge
+		- maintain at least a minimal working data sets (at least 7 months time frame for 1d,8h,4h,1h,5m,15m ) 
+			for c_size 1d,8h,4h,1h,1m,5m,15m
+		- create basic indicators : rsi,sma,volume,fibonacci retracement and extension
+		- bollinger bands
+	
+	- create a plot of sma minimal diferrences before the brekout 
+	- play the dips (buy near the support lines ) , for quick gains og say 15%
+		- during down trends watch out for tests, place limit order at or near bottom of tests to maximize gain 
+	- price (close) : especially at 5m time frame , watch out for 5% or above increase
+	- add strategy using marching time frames(higher frequency time frames goes first the others slowly keeping up until they get to the same 	state.)
+	- check number of candles or rows that were fetched.
+	- add feature to calculate total time the program took to complete.
+	- ssh to server
+	- move the code that reads timestamps from files out of the function body of pull_data so that it will be read only once, instead of being iterated for each pair symbols.
+	- determine standard deviations of price (volume) percentage change in consolidation phases
+	- tracking the evolution of price/volume  in relation to the wyckoff method, using sma,rsi,storsi in different time frames
+	- add procedure to list the top 20 based on marcket capitalization
+	- add a procedure to list top 20 based on 24-hr trade volume. (later on based for ncandles for diferent candle sizes) 
+
+	- create aws account and deply tal.
+	- vvix
+	- crytomarketcap
+	- sharpe, sortino, treymor ratios ,beta
+	- add feature to check integrity of data
+		- check for missing dates
+		- check if dates are consecutive and no repeatitions
+	- option to use list of pairs in file(repull data for those that failed previously).
+	- create a backtest procedure
+		- inside a for loop , increment time by 5 minutes
+		- simulate trades using strategies
+			- using the %5 increase in price 
+			- using volume
+			- using rsi
+			- using sma
+			- using fibonacci retracement
+			- using sigma or standard deviation applied to volume and price
+	- implementation of wyckoff
+		- determine the different phases
+		- procedure for each phase
+			- prioritize the events that give opportunity for maximum gain
+	- create a procedure for gaining from events that have big price movements
+		- dips
+		- tests
+		- outbreaks
+	
+	- query existing positions, orders
+	- query acct
+	- place trade
+	- create function to determine newly added pairs in the exchange
+	- start and stop script
+	- create config file
+
+Secondary priorities
+
+	- add indicators
+		- rsi : modular that can handle different c_size or time frame
+			- determine overbought and oversold conditions
+			- during uptrend : observe 45 and 40 levelas lower boundary
+			- during downtrend : observe 50 and 60 level as upper boundary
+		- sma : same as rsi
+			- determine max of sma for certain range 
+			- differences between smas : if smaller c_size sma is above the bigger then it is trending up , 
+				other wise trending down
+			- determine last peak of sma in terms of number of candles from current time
+		- volume : observe rapid increase
+	
+	- 
+	- segregate pairs according to strength
+		- market capitalization
+		- composition of core team/ dynamic and proven track records
+		- i.e. btc, eth, xrp, bnb group into top strenth
+		- new promising tokens  2nd to  top
+		- least strenth includes those tokens that have fallen out from being favored,
+		- utility token that are overly bought
+		- old projects that lost momentum
+		- classify based on type : utility token, governance token, running its own blockchain network, protocol token , oracles
+		
+	- monitor dow jones industrial average
+	- monitor wall stree journal for calendars and events
+	- greed and fear index for stocks and crypto
+	- add other exchanges tp monitor and trade on
+	- add configuration file
+	- margin trading
+	- fibonacci retracement/extensio
+	- elliot wave
+	- standard deviation
+
+	- prepare for cloud migration(aws)
+		- create new mail account for aws dev
+		- http
+		- php core
+		- laravel framework
+			- install eclipse
+			- install laravel
+		- docker
+		- server
+	- install lixux server locally
+	- port to java
+	- port to android
+
+	- dao
+	- smart contracts
+	- dapp
+	- polygon
+	- aragon
+	- etheriom
+	- blockchain.com
+	- blockchain
+	- web dev front/back end
+
+
+********************************************************************
+***** end triage    ************************************************
+********************************************************************
+
+********************************************************************
+********************************************************************
+- miscellaneous
+
+		- android dev using sensors
+		- machine learning
+				- tensorflow
+		- cloud dev account
+				- aws , azure
+		- continuous integration (ci)
+
+********************************************************************
+********************************************************************
+
+********************************************************************
+**** Finished    ***************************************************
+********************************************************************
+
+	- change default data dir and base it on the user's home directory instead of hardwiring to a fixed path.
+	- fixed and upgraded old amd fm2 desktop
+	- * full download : iterate pull data until the last full candle is reached
+			- done in bash. have to make a built-in feature in python
+	- calculate numbr of candles from begin date to current last candle and compare to specified n_candles
+		if n_candles > last - beginning canle then assign difference to n_candles
+	- create firstl listing
+	- debug : specified date in command line not used . default values are used instead.	
+	- debug - when found existing file and last entry is same as latest candle the last entry is copied ato the next row
+	- make a directory for each c_size
+	- add readme file
+	- create develop,feature branch
+	- create incremental branch
+	- rebase beta (created new repository and renamed to crystal )
+	- backup to bitbucket
+
+	
+********************************************************************
+
+done :
+
+
+sept 22
+   - started using pycharm
+   - creating and using environmental variables through conda env activate/deactivate
+
+nov 28
+   - conditional to retrieve and update pairs file only if start date is lesser than current date/time
+
+oct 14
+	start new gui feature
+	add a configuration file
+
+october 7
+   poll data from all time intervals
+   compute rsis
+   compute smas
+
+   identify high rates of change in some time ranges(as well as volumes)
+   		5,10,15,30 minutes
+   		1,2,3,4,6,8 hrs
+   		1,2,3 days
+
+sep 21
+
+list all usdt pairs
+classify according to market cap
+	top 10 
+	medium
+	micro cap
+check for trade volumes
+	high
+	low
+	increasing
+	decreasing
+check for 5-minute change for micro and medium caps
+	>= 3% change
+	check for sma consolidation and divergence
+	check for rsi
+	check for srsi
+check for % change in top 10, etc
+	>= 1 change
+	check for sma consolidation and divergence
+	check for rsi
+	check for srsi
+
+create limit order (buy/sell)
+create trailing order
+orders with stop loss
+
